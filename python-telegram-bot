@@ -1,6 +1,12 @@
 import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from dotenv import load_dotenv
+import os
+
+# .env faylidan tokenni o‘qish
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 # Logging sozlash
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -35,9 +41,6 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.warning(f"Xato yuz berdi: {context.error}")
 
 def main():
-    # Bot tokenini kiriting (Telegram BotFather’dan olingan)
-    BOT_TOKEN = "SIZNING_BOT_TOKENINGIZ"  # Bu yerni o‘z tokeningiz bilan almashtiring
-
     # Application ob'ektini yaratish
     application = Application.builder().token(BOT_TOKEN).build()
 
